@@ -1,0 +1,16 @@
+    <item>
+      <title><%= title %></title>
+      <itunes:title><%= title %></itunes:title>
+      <description><![CDATA[<%= description %>]]></description>
+      <content:encoded><![CDATA[<%= description %>]]></content:encoded>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:author>99.7 NOW!</itunes:author>
+      <itunes:image href="https://bmm.us-ord-1.linodeobjects.com/bmm-logo.jpg" />
+      <media:content url="<%= mp3_url %>" type="audio/mpeg"></media:content>
+      <media:content url="https://bmm.us-ord-1.linodeobjects.com/bmm-logo.jpg" type="image/jpeg" />
+      <guid isPermaLink="false"><%= guid %></guid>
+      <pubDate><%= pub_date %></pubDate>
+      <itunes:duration><%= duration_sec %></itunes:duration>
+      <enclosure url="<%= mp3_url %>" length="<%= mp3_size_bytes %>" type="audio/mpeg" />
+      <link>https://github.com/camertron/bmm</link>
+    </item>

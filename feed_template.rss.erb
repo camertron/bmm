@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:psc="https://podlove.org/simple-chapters/" xmlns:omny="https://omny.fm/rss-extensions" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:acast="https://schema.acast.com/1.0/" xmlns:podcast="https://podcastindex.org/namespace/1.0" version="2.0">
+  <channel>
+    <language>en-US</language>
+    <atom:link rel="self" type="application/rss+xml" href="https://bmm.us-ord-1.linodeobjects.com/podcast1.rss" />
+    <atom:link rel="first" type="application/rss+xml" href="https://bmm.us-ord-1.linodeobjects.com/podcast1.rss" />
+    <atom:link rel="last" type="application/rss+xml" href="https://bmm.us-ord-1.linodeobjects.com/podcast1.rss" />
+    <itunes:new-feed-url>https://bmm.us-ord-1.linodeobjects.com/podcast1.rss</itunes:new-feed-url>
+    <title>Big Money Minute</title>
+    <itunes:subtitle>Ten questions, a minute on the clock! Answer them correctly within the minute and you will win $1000!</itunes:subtitle>
+    <link>https://github.com/camertron/bmm</link>
+    <description><![CDATA[<p>Ten questions, a minute on the clock! Answer them correctly within the minute and you will win $1000!</p>]]></description>
+    <itunes:type>episodic</itunes:type>
+    <itunes:summary>Ten questions, a minute on the clock! Answer them correctly within the minute and you will win $1000!</itunes:summary>
+    <itunes:owner>
+      <itunes:name>Cameron Dutro</itunes:name>
+    </itunes:owner>
+    <itunes:author>99.7 NOW!</itunes:author>
+    <copyright>2023 99.7 NOW</copyright>
+    <itunes:explicit>clean</itunes:explicit>
+    <itunes:category text="Comedy"></itunes:category>
+    <itunes:image href="https://bmm.us-ord-1.linodeobjects.com/bmm-logo.jpg" />
+    <image>
+      <url>https://bmm.us-ord-1.linodeobjects.com/bmm-logo.jpg</url>
+      <title>Big Money Minute</title>
+      <link>https://github.com/camertron/bmm</link>
+    </image>
+    <%= items.map(&:render).join("\n") %>
+  </channel>
+</rss>
