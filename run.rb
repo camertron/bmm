@@ -135,7 +135,7 @@ new_rss_items = missing.flat_map do |item_node|
   system("ffmpeg -i #{mp3_outfile_path} -acodec pcm_s16le -ac 1 -ar 16000 #{wav_outfile_path}")
 
   puts "Identifying offsets"
-  offset_data = `docker run --rm -v $(pwd)/tmp:/tmp -it bmm-offset-finder:latest --file /tmp/#{wav_outfile_name}`
+  offset_data = `docker run --rm -v $(pwd)/tmp:/tmp bmm-offset-finder:latest --file /tmp/#{wav_outfile_name}`
   last_bracket = offset_data.rindex("]")
   offset_data = offset_data[0..last_bracket]
   offsets = JSON.parse(offset_data)
