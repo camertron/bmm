@@ -117,7 +117,8 @@ new_rss_items = missing.flat_map do |item_node|
   mp3_infile = URI.parse(audio_url).open(
     progress_proc: -> (count_bytes) {
       mb = (count_bytes / (1024 ** 2)).round
-      STDOUT.write("\rDownloaded #{mb}mb")
+      STDOUT.write("\rDownloaded #{mb}mb") if mb != $last_mb && mb % 10 == 0
+      $last_mb = mb
     }
   )
 
