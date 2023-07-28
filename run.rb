@@ -105,7 +105,7 @@ puts "Identified #{missing.size} new episodes to process"
 
 new_rss_items = missing.flat_map do |item_node|
   title = item_node.get_elements("title").first.text
-  audio_url = item_node.get_elements("media:content").first["url"]
+  audio_url = item_node.get_elements("enclosure").first["url"]
   pub_date_raw = item_node.get_elements("pubDate").first.text
   pub_date = Time.parse(pub_date_raw)
 
