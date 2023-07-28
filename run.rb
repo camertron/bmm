@@ -106,12 +106,12 @@ puts "Identified #{missing.size} new episodes to process"
 new_rss_items = missing.flat_map do |item_node|
   title = item_node.get_elements("title").first.text
   audio_url = item_node.get_elements("enclosure").first["url"]
-  pub_date_raw = item_node.get_elements("pubDate").first.text
-  pub_date = Time.parse(pub_date_raw)
+  title = item_node.get_elements("title").first.text
+  pub_date = title.match(/(\d+\-\d+\-\d+)/).captures.first
 
   puts "Downloading #{title}"
 
-  mp3_outfile_name = "#{format_pub_date(pub_date)}.mp3"
+  mp3_outfile_name = "#{pub_date}.mp3"
   mp3_outfile_path = File.join("tmp", mp3_outfile_name)
   mp3_outfile = File.open(mp3_outfile_path, 'wb')
   mp3_infile = URI.parse(audio_url).open(
@@ -146,7 +146,7 @@ new_rss_items = missing.flat_map do |item_node|
 
   new_items = offsets.map.with_index do |offset, idx|
     puts "Extracting clip ##{idx + 1}"
-    clip_wav_name = "#{format_pub_date(pub_date)}-#{idx + 1}.wav"
+    clip_wav_name = "#{pub_date}-#{idx + 1}.wav"
     clip_wav_path = "tmp/#{clip_wav_name}"
     system("ffmpeg -ss #{offset["offset"]} -t #{CLIP_LENGTH_MINUTES * 60} -i #{wav_outfile_path} #{clip_wav_path}")
 
@@ -162,11 +162,11 @@ new_rss_items = missing.flat_map do |item_node|
     end
 
     new_item = RssFeedItem.new(
-      title: "BMM ##{idx + 1} for #{format_pub_date(pub_date)}",
-      description: "BMM ##{idx + 1} for #{format_pub_date(pub_date)}",
+      title: "BMM ##{idx + 1} for #{pub_date}",
+      description: "BMM ##{idx + 1} for #{pub_date}",
       mp3_url: "https://bmm.us-ord-1.linodeobjects.com/#{File.basename(clip_mp3_path)}",
       guid: SecureRandom.uuid,
-      pub_date: pub_date_raw,
+      pub_date: item_node.get_elements("pubDate").first.text,
       duration_sec: CLIP_LENGTH_MINUTES * 60,
       mp3_size_bytes: File.size(clip_mp3_path)
     )
