@@ -16,6 +16,12 @@ jobs:
         ruby-version: '3.2'
         bundler-cache: true
     - uses: FedericoCarboni/setup-ffmpeg@v2
+    - name: Login to Container Registry
+      uses: docker/login-action@v2.1.0
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
     - name: Run
       run: bundle exec ruby run.rb
       env:
