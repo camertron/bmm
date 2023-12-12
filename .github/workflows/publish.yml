@@ -2,7 +2,7 @@ name: Publish
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 18 * * 1-5" # every weekday at 11am PT, 6pm UTC
+    - cron: "0 19 * * 1-5" # every weekday at 11am PT, 6pm UTC
 permissions:
   packages: read
 jobs:
