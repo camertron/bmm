@@ -17,6 +17,10 @@ def main(within_file):
         for candidate in candidates:
             start = candidate[0]
             end = candidate[1]
+
+            if start < 0 or end < 0 or start > end:
+                continue
+
             c = signal.correlate(y_within[start:end], y_find, mode='valid', method='fft')
             peak = np.argmax(c)
             peaks.append((peak + start, c))
@@ -28,7 +32,7 @@ def main(within_file):
 
         candidates = new_candidates
 
-    peaks = [peak for peak in peaks if np.max(peak[1]) > 500]
+    peaks = [peak for peak in peaks if np.max(peak[1]) > 400]
 
     output = []
 
